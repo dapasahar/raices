@@ -13,9 +13,12 @@ public class RootFragment : MonoBehaviour
     [SerializeField] Transform primarySpawner;
     [SerializeField] Transform secondarySpawner;
 
+    [SerializeField] Transform collisionChecker;
+
     [HideInInspector] public RootController controller;
 
     SpriteRenderer spriteRenderer;
+    Collider2D self;
 
     public RootFragment father;
 
@@ -24,6 +27,11 @@ public class RootFragment : MonoBehaviour
         get
         {
             if (transform.position.y > controller.TopLimit) return true;
+            Collider2D coll = Physics2D.OverlapCircle(collisionChecker.position, .08f);
+            if (step == 0 && coll != null && coll != self)
+            {
+                return true;
+            }
             return false;
         }
     }
@@ -39,6 +47,7 @@ public class RootFragment : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        self = GetComponent<Collider2D>();
     }
 
     public void Next()
@@ -58,5 +67,10 @@ public class RootFragment : MonoBehaviour
                 spriteRenderer.sprite = part2;
                 break;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(collisionChecker.position, .08f);
     }
 }
