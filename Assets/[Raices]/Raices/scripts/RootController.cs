@@ -12,7 +12,7 @@ public class RootController : MonoBehaviour
     [SerializeField] RootFragment turnRightPrefab;
     [SerializeField] RootFragment forkPrefab;
 
-    public List<RootFragment> fragments = new();
+    public List<RootFragment> fragmentosColocados = new();
     public List<RootFragment> tFragments = new();
 
     [SerializeField] int tickCounter = 0;
@@ -36,27 +36,60 @@ public class RootController : MonoBehaviour
             // 1.- Esperar tickTime
             yield return new WaitForSeconds(tickTime);
 
-            // 2.- Obtener los actualizables
+            // 2.- Obtener puntas que se tiene que detener
+            QuitarPuntasDetenidas();
 
+            // 3.- Obtener fragmento que ya han terminado su ciclo
+            QuitarFragmentosCompletos();
 
-            // 3.- Actualizar los actualizables
+            // 4.- actualizar fragmentos colocados
+            foreach (var item in fragmentosColocados)
+            {
+                item.Next();
+            }
 
-
-            // 4.- Añadir los nuevos
-
-
-
+            // 5.- colocar nuevos fragmentos
 
 
             //Debug.Log($"Tick {tickCounter}");
-            for (int i = fragments.Count - 1; i >= 0; i--)
-            {
-                fragments[i].Next();
-            }
-            fragments.AddRange(tFragments);
+            fragmentosColocados.AddRange(tFragments);
             tFragments = new List<RootFragment>();
             tickCounter++;
             //Debug.Break();
+        }
+    }
+
+    private void QuitarFragmentosCompletos()
+    {
+        List<RootFragment> completos = new();
+        foreach (var item in fragmentosColocados)
+        {
+            if (item.Completo)
+            {
+                completos.Add(item);
+            }
+        }
+        foreach (var item in completos)
+        {
+            fragmentosColocados.Remove(item);
+        }
+    }
+
+    private void QuitarPuntasDetenidas()
+    {
+        List<RootFragment> puntasDetenidas = new();
+        foreach (var item in fragmentosColocados)
+        {
+            if (item.Detenida)
+            {
+                puntasDetenidas.Add(item);
+                puntasDetenidas.Add(item.father);
+            }
+        }
+
+        foreach (var item in puntasDetenidas)
+        {
+            fragmentosColocados.Remove(item);
         }
     }
 
@@ -103,8 +136,4 @@ public class RootController : MonoBehaviour
         return specialFragments[Random.Range(0, specialFragments.Length)];
     }
 
-    internal void RemoveFragment(RootFragment rootFragment)
-    {
-        fragments.Remove(rootFragment);
-    }
 }

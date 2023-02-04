@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RootFragment : MonoBehaviour
 {
@@ -16,9 +17,24 @@ public class RootFragment : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
-    public bool toRemove = false;
-
     public RootFragment father;
+
+    public bool Detenida
+    {
+        get
+        {
+            if (transform.position.y > controller.TopLimit) return true;
+            return false;
+        }
+    }
+
+    public bool Completo
+    {
+        get
+        {
+            return step >= 3;  
+        }
+    }
 
     private void Awake()
     {
@@ -31,13 +47,6 @@ public class RootFragment : MonoBehaviour
         switch (step)
         {
             case 1:
-                if (transform.position.y > controller.TopLimit)
-                {
-                    toRemove = true;
-                    if (father != null) father.toRemove = true;
-                    Debug.Break();
-                    return;
-                }
                 // colocar fragmento 1
                 spriteRenderer.sprite = part1;
                 // crear siguiente
@@ -48,18 +57,6 @@ public class RootFragment : MonoBehaviour
                 // colocar fragmento 2
                 spriteRenderer.sprite = part2;
                 break;
-            case 3:
-                toRemove = true;
-                if (father != null) father.toRemove = true;
-                break;
-        }
-    }
-
-    private void LateUpdate()
-    {
-        if (toRemove)
-        {
-            controller.RemoveFragment(this);
         }
     }
 }
