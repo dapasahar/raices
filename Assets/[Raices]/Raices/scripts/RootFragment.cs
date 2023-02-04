@@ -9,7 +9,8 @@ public class RootFragment : MonoBehaviour
     [SerializeField] Sprite part1;
     [SerializeField] Sprite part2;
 
-    [SerializeField] Transform spawner;
+    [SerializeField] Transform primarySpawner;
+    [SerializeField] Transform secondarySpawner;
 
     [HideInInspector] public RootController controller;
 
@@ -31,7 +32,8 @@ public class RootFragment : MonoBehaviour
                 // colocar fragmento 1
                 sprite.sprite = part1;
                 // crear siguiente
-                controller.AddFragment(spawner);
+                controller.AddFragment(primarySpawner);
+                if(secondarySpawner) controller.AddFragment(secondarySpawner);
                 break;
             case 2:
                 // colocar fragmento 2

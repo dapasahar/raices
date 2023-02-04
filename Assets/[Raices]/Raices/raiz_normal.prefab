@@ -197,7 +197,8 @@ MonoBehaviour:
   step: 0
   part1: {fileID: -1066065752, guid: 1808e5209d4450b49841638c876120e4, type: 3}
   part2: {fileID: -608876929, guid: 1808e5209d4450b49841638c876120e4, type: 3}
-  spawner: {fileID: 6290252275065540931}
+  primarySpawner: {fileID: 6290252275065540931}
+  secondarySpawner: {fileID: 0}
   controller: {fileID: 0}
 --- !u!1 &8470002672085343035
 GameObject:

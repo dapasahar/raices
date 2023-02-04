@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: part1
       value: 
       objectReference: {fileID: -223331318, guid: 1808e5209d4450b49841638c876120e4, type: 3}
+    - target: {fileID: -1177639441752960632, guid: eefdd6f921360ca4b94dce259c00ce85, type: 3}
+      propertyPath: primarySpawner
+      value: 
+      objectReference: {fileID: 5082201075692794480}
     - target: {fileID: 5045737123714117716, guid: eefdd6f921360ca4b94dce259c00ce85, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -69,3 +73,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eefdd6f921360ca4b94dce259c00ce85, type: 3}
+--- !u!4 &5082201075692794480 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1353900654836631791, guid: eefdd6f921360ca4b94dce259c00ce85, type: 3}
+  m_PrefabInstance: {fileID: 6074686892974160543}
+  m_PrefabAsset: {fileID: 0}
