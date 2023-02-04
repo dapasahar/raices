@@ -45,5 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tickTime: 0.5
-  prefab: {fileID: -1177639441752960632, guid: eefdd6f921360ca4b94dce259c00ce85, type: 3}
+  normalPrefab: {fileID: -1177639441752960632, guid: eefdd6f921360ca4b94dce259c00ce85, type: 3}
+  turnLeftPrefab: {fileID: 4316050025615551255, guid: c7693c379166492449e05693f0fb270c, type: 3}
+  turnRightPrefab: {fileID: 7188196272782904849, guid: 3883b858f3614bb47b944730282b5722, type: 3}
+  forkPrefab: {fileID: 5229098287307527814, guid: 35a251afb3ec1d2479eefeb3c1f2e283, type: 3}
   tickCounter: 0

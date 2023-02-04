@@ -7,7 +7,10 @@ public class RootController : MonoBehaviour
 
     [SerializeField] float tickTime = .5f;
 
-    [SerializeField] RootFragment prefab;
+    [SerializeField] RootFragment normalPrefab;
+    [SerializeField] RootFragment turnLeftPrefab;
+    [SerializeField] RootFragment turnRightPrefab;
+    [SerializeField] RootFragment forkPrefab;
 
     List<RootFragment> fragments = new List<RootFragment>();
     List<RootFragment> tFragments = new List<RootFragment>();
@@ -43,6 +46,7 @@ public class RootController : MonoBehaviour
 
     RootFragment GetPrefab()
     {
-        return prefab;
+        if (tickCounter > 0 && tickCounter % 5 == 0) return turnLeftPrefab;
+        return normalPrefab;
     }
 }

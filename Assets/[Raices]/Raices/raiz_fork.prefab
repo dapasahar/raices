@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: secondarySpawner
       value: 
       objectReference: {fileID: 9174207749541695375}
+    - target: {fileID: 1353900654836631791, guid: eefdd6f921360ca4b94dce259c00ce85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 5045737123714117716, guid: eefdd6f921360ca4b94dce259c00ce85, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -67,6 +71,10 @@ PrefabInstance:
     - target: {fileID: 6023246541037103925, guid: eefdd6f921360ca4b94dce259c00ce85, type: 3}
       propertyPath: m_Name
       value: raiz_fork
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370349723451345025, guid: eefdd6f921360ca4b94dce259c00ce85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8453789077805322763, guid: eefdd6f921360ca4b94dce259c00ce85, type: 3}
       propertyPath: m_Sprite
