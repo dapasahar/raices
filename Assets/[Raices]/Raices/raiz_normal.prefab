@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 5045737123714117716}
   - component: {fileID: -1177639441752960632}
   m_Layer: 0
-  m_Name: raiz
+  m_Name: raiz_normal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
