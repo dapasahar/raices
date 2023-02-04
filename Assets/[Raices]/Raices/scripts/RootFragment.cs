@@ -69,8 +69,8 @@ public class RootFragment : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(collisionChecker.position, .08f);
-    }
+    }*/
 }
