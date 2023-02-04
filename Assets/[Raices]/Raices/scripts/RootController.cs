@@ -17,8 +17,13 @@ public class RootController : MonoBehaviour
 
     [SerializeField] int tickCounter = 0;
 
+    [SerializeField] int turnCounter = 5;
+
+    RootFragment[] specialFragments;
+
     IEnumerator Start()
     {
+        specialFragments = new RootFragment[] { turnLeftPrefab, turnRightPrefab, forkPrefab };
 
         AddFragment(transform);
 
@@ -46,7 +51,12 @@ public class RootController : MonoBehaviour
 
     RootFragment GetPrefab()
     {
-        if (tickCounter > 0 && tickCounter % 5 == 0) return turnLeftPrefab;
+        if (tickCounter > turnCounter)
+        {
+            tickCounter = 0;
+            turnCounter = Random.Range(5, 8);
+            return specialFragments[Random.Range(0, specialFragments.Length)];
+        }
         return normalPrefab;
     }
 }
