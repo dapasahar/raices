@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -1177639441752960632, guid: eefdd6f921360ca4b94dce259c00ce85, type: 3}
       propertyPath: part1
       value: 
-      objectReference: {fileID: -223331318, guid: 1808e5209d4450b49841638c876120e4, type: 3}
+      objectReference: {fileID: -1892518498, guid: 1808e5209d4450b49841638c876120e4, type: 3}
     - target: {fileID: -1177639441752960632, guid: eefdd6f921360ca4b94dce259c00ce85, type: 3}
       propertyPath: primarySpawner
       value: 
@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: 8453789077805322763, guid: eefdd6f921360ca4b94dce259c00ce85, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2128397795, guid: 1808e5209d4450b49841638c876120e4, type: 3}
+      objectReference: {fileID: 1879839595, guid: 1808e5209d4450b49841638c876120e4, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

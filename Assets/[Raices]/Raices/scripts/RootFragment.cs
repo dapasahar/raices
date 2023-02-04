@@ -14,31 +14,51 @@ public class RootFragment : MonoBehaviour
 
     [HideInInspector] public RootController controller;
 
-    public int Step { get => step; set => step = value; }
+    SpriteRenderer spriteRenderer;
 
-    SpriteRenderer sprite;
+    public bool toRemove = false;
+
+    public RootFragment father;
 
     private void Awake()
     {
-        sprite = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     public void Next()
     {
-        Step++;
-        switch (Step)
+        step++;
+        switch (step)
         {
             case 1:
+                if (transform.position.y > controller.TopLimit)
+                {
+                    toRemove = true;
+                    if (father != null) father.toRemove = true;
+                    return;
+                }
                 // colocar fragmento 1
-                sprite.sprite = part1;
+                spriteRenderer.sprite = part1;
                 // crear siguiente
-                controller.AddFragment(primarySpawner);
-                if(secondarySpawner) controller.AddFragment(secondarySpawner);
+                controller.AddFragment(primarySpawner, this);
+                if (secondarySpawner != null) controller.AddFragment(secondarySpawner, this);
                 break;
             case 2:
                 // colocar fragmento 2
-                sprite.sprite = part2;
+                spriteRenderer.sprite = part2;
                 break;
+            case 3:
+                toRemove = true;
+                if (father != null) father.toRemove = true;
+                break;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (toRemove)
+        {
+            controller.RemoveFragment(this);
         }
     }
 }
