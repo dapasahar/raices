@@ -56,6 +56,12 @@ public class RootController : MonoBehaviour
             tFragments = new List<RootFragment>();
             tickCounter++;
             //Debug.Break();
+
+            if (tickCounter > turnCounter)
+            {
+                tickCounter = 0;
+                turnCounter = Random.Range(5, 8);
+            }
         }
     }
 
@@ -106,10 +112,8 @@ public class RootController : MonoBehaviour
 
     RootFragment GetPrefab(float rotation)
     {
-        if (tickCounter > turnCounter)
+        if (tickCounter >= turnCounter)
         {
-            tickCounter = 0;
-            turnCounter = Random.Range(5, 8);
             switch (rotation)
             {
                 case 0:
