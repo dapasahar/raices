@@ -22,6 +22,8 @@ public class RootFragment : MonoBehaviour
 
     public RootFragment father;
 
+    public int siguiente = 5;
+
     public bool Detenida
     {
         get
@@ -59,8 +61,10 @@ public class RootFragment : MonoBehaviour
                 // colocar fragmento 1
                 spriteRenderer.sprite = part1;
                 // crear siguiente
-                controller.AddFragment(primarySpawner, this);
-                if (secondarySpawner != null) controller.AddFragment(secondarySpawner, this);
+                siguiente--;
+                RootFragment f = controller.AddFragment(primarySpawner, this, siguiente == 0);
+                f.siguiente= siguiente == 0 ? Random.Range(5,9) : siguiente;
+                if (secondarySpawner != null) controller.AddFragment(secondarySpawner, this, siguiente == 0);
                 break;
             case 2:
                 // colocar fragmento 2

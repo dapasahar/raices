@@ -32,7 +32,7 @@ public class RootController : MonoBehaviour
             turnLeftPrefab, turnRightPrefab, 
             forkPrefab };
 
-        AddFragment(transform, null);
+        AddFragment(transform, null, false);
 
         while (true)
         {
@@ -102,9 +102,10 @@ public class RootController : MonoBehaviour
         }
     }
 
-    public RootFragment AddFragment(Transform spawner, RootFragment father)
+    public RootFragment AddFragment(Transform spawner, RootFragment father, bool special)
     {
-        RootFragment f = Instantiate(GetPrefab(spawner.rotation.eulerAngles.z),
+
+        RootFragment f = Instantiate(GetPrefab(spawner.rotation.eulerAngles.z, special),
             spawner.position, spawner.rotation);
         f.controller = this;
         f.father = father;
@@ -113,9 +114,9 @@ public class RootController : MonoBehaviour
         return f;
     }
 
-    RootFragment GetPrefab(float rotation)
+    RootFragment GetPrefab(float rotation, bool special)
     {
-        if (Random.Range(0, 20) < 3)
+        if (special)
         {
             switch (rotation)
             {
