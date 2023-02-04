@@ -27,7 +27,10 @@ public class RootController : MonoBehaviour
 
     IEnumerator Start()
     {
-        specialFragments = new RootFragment[] { turnLeftPrefab, turnRightPrefab, forkPrefab };
+        specialFragments = new RootFragment[] { 
+            turnLeftPrefab, turnRightPrefab, 
+            turnLeftPrefab, turnRightPrefab, 
+            forkPrefab };
 
         AddFragment(transform, null);
 
@@ -112,16 +115,16 @@ public class RootController : MonoBehaviour
 
     RootFragment GetPrefab(float rotation)
     {
-        if (tickCounter >= turnCounter)
+        if (Random.Range(0, 20) < 3)
         {
             switch (rotation)
             {
                 case 0:
                     return GetRandomFragment();
                 case 90:
-                    return GetRandomFragment(turnLeftPrefab, forkPrefab);
+                    return GetRandomFragment(turnLeftPrefab, turnLeftPrefab, forkPrefab);
                 case 270:
-                    return GetRandomFragment(turnRightPrefab, forkPrefab);
+                    return GetRandomFragment(turnRightPrefab, turnRightPrefab, forkPrefab);
                 case 180:
                     return GetRandomFragment(turnLeftPrefab, turnLeftPrefab);
             }
