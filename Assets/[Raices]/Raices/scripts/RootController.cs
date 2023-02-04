@@ -33,11 +33,25 @@ public class RootController : MonoBehaviour
 
         while (true)
         {
+            // 1.- Esperar tickTime
             yield return new WaitForSeconds(tickTime);
+
+            // 2.- Obtener los actualizables
+
+
+            // 3.- Actualizar los actualizables
+
+
+            // 4.- Añadir los nuevos
+
+
+
+
+
             //Debug.Log($"Tick {tickCounter}");
-            foreach (var item in fragments)
+            for (int i = fragments.Count - 1; i >= 0; i--)
             {
-                item.Next();
+                fragments[i].Next();
             }
             fragments.AddRange(tFragments);
             tFragments = new List<RootFragment>();

@@ -35,6 +35,7 @@ public class RootFragment : MonoBehaviour
                 {
                     toRemove = true;
                     if (father != null) father.toRemove = true;
+                    Debug.Break();
                     return;
                 }
                 // colocar fragmento 1
