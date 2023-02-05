@@ -26,10 +26,17 @@ public class RootFragment : MonoBehaviour
     {
         get
         {
-            if (transform.position.y > controller.TopLimit) return true;
+            if (collisionChecker.position.y > controller.TopLimit) return true;
+            if (collisionChecker.position.x > controller.RightLimit + .3f) return true;
+            if (collisionChecker.position.x < controller.LefLimit - .3f) return true;
             Collider2D coll = Physics2D.OverlapCircle(collisionChecker.position, .08f);
             if (step == 0 && coll != null && coll != self)
             {
+                if (coll.CompareTag("Agua"))
+                {
+                    LevelController.Instance.Victoria();
+                    controller.run = false;
+                }
                 return true;
             }
             return false;
@@ -60,9 +67,13 @@ public class RootFragment : MonoBehaviour
                 rootRenderer.Render(RootRenderer.FRAG_1);
                 // crear siguiente
                 siguiente--;
-                RootFragment f = controller.AddFragment(primarySpawner, this, siguiente == 0);
+                bool special = siguiente == 0 
+                    || collisionChecker.position.x > controller.RightLimit - .4f 
+                    || collisionChecker.position.x < controller.LefLimit + .4f;
+
+                RootFragment f = controller.AddFragment(primarySpawner, this, special);
                 f.siguiente= siguiente == 0 ? Random.Range(5,9) : siguiente;
-                if (secondarySpawner != null) controller.AddFragment(secondarySpawner, this, siguiente == 0);
+                if (secondarySpawner != null) controller.AddFragment(secondarySpawner, this, special);
                 break;
             case 2:
                 // colocar fragmento 2

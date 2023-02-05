@@ -12,8 +12,13 @@ public class RootController : MonoBehaviour
     [SerializeField] RootFragment turnRightPrefab;
     [SerializeField] RootFragment forkPrefab;
 
+    public Transform leftLimit;
+    public Transform rightLimit;
+
     public List<RootFragment> fragmentosColocados = new();
     public List<RootFragment> tFragments = new();
+
+    public bool run = false;
 
     [SerializeField] int tickCounter = 0;
 
@@ -22,6 +27,8 @@ public class RootController : MonoBehaviour
     RootFragment[] specialFragments;
 
     public float TopLimit => transform.position.y;
+    public float LefLimit => leftLimit.position.x;
+    public float RightLimit => rightLimit.position.x;
 
     static int a = 0;
 
@@ -32,9 +39,14 @@ public class RootController : MonoBehaviour
             turnLeftPrefab, turnRightPrefab, 
             forkPrefab };
 
+        while (!run)
+        {
+            yield return null;
+        }
+
         AddFragment(transform, null, false);
 
-        while (true)
+        while (run)
         {
             // 1.- Esperar tickTime
             yield return new WaitForSeconds(tickTime);
@@ -66,6 +78,8 @@ public class RootController : MonoBehaviour
                 turnCounter = Random.Range(5, 8);
             }
         }
+
+
     }
 
     private void QuitarFragmentosCompletos()
