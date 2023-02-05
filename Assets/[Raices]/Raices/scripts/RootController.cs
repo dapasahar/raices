@@ -12,8 +12,13 @@ public class RootController : MonoBehaviour
     [SerializeField] RootFragment turnRightPrefab;
     [SerializeField] RootFragment forkPrefab;
 
+    public Transform leftLimit;
+    public Transform rightLimit;
+
     public List<RootFragment> fragmentosColocados = new();
     public List<RootFragment> tFragments = new();
+
+    public bool run = false;
 
     [SerializeField] int tickCounter = 0;
 
@@ -22,6 +27,8 @@ public class RootController : MonoBehaviour
     RootFragment[] specialFragments;
 
     public float TopLimit => transform.position.y;
+    public float LefLimit => leftLimit.position.x;
+    public float RightLimit => rightLimit.position.x;
 
     static int a = 0;
 
@@ -32,9 +39,14 @@ public class RootController : MonoBehaviour
             turnLeftPrefab, turnRightPrefab, 
             forkPrefab };
 
-        AddFragment(transform, null);
+        while (!run)
+        {
+            yield return null;
+        }
 
-        while (true)
+        AddFragment(transform, null, false);
+
+        while (run)
         {
             // 1.- Esperar tickTime
             yield return new WaitForSeconds(tickTime);
@@ -66,6 +78,8 @@ public class RootController : MonoBehaviour
                 turnCounter = Random.Range(5, 8);
             }
         }
+
+
     }
 
     private void QuitarFragmentosCompletos()
@@ -102,9 +116,10 @@ public class RootController : MonoBehaviour
         }
     }
 
-    public RootFragment AddFragment(Transform spawner, RootFragment father)
+    public RootFragment AddFragment(Transform spawner, RootFragment father, bool special)
     {
-        RootFragment f = Instantiate(GetPrefab(spawner.rotation.eulerAngles.z),
+
+        RootFragment f = Instantiate(GetPrefab(spawner.rotation.eulerAngles.z, special),
             spawner.position, spawner.rotation);
         f.controller = this;
         f.father = father;
@@ -113,9 +128,9 @@ public class RootController : MonoBehaviour
         return f;
     }
 
-    RootFragment GetPrefab(float rotation)
+    RootFragment GetPrefab(float rotation, bool special)
     {
-        if (Random.Range(0, 20) < 3)
+        if (special)
         {
             switch (rotation)
             {
