@@ -7,9 +7,6 @@ public class RootFragment : MonoBehaviour
 {
     [SerializeField] int step = 0;
 
-    [SerializeField] Sprite part1;
-    [SerializeField] Sprite part2;
-
     [SerializeField] Transform primarySpawner;
     [SerializeField] Transform secondarySpawner;
 
@@ -17,7 +14,8 @@ public class RootFragment : MonoBehaviour
 
     [HideInInspector] public RootController controller;
 
-    SpriteRenderer spriteRenderer;
+    RootRenderer rootRenderer;
+
     Collider2D self;
 
     public RootFragment father;
@@ -48,7 +46,7 @@ public class RootFragment : MonoBehaviour
 
     private void Awake()
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        rootRenderer = GetComponentInChildren<RootRenderer>();
         self = GetComponent<Collider2D>();
     }
 
@@ -59,7 +57,7 @@ public class RootFragment : MonoBehaviour
         {
             case 1:
                 // colocar fragmento 1
-                spriteRenderer.sprite = part1;
+                rootRenderer.Render(RootRenderer.FRAG_1);
                 // crear siguiente
                 siguiente--;
                 RootFragment f = controller.AddFragment(primarySpawner, this, siguiente == 0);
@@ -68,7 +66,7 @@ public class RootFragment : MonoBehaviour
                 break;
             case 2:
                 // colocar fragmento 2
-                spriteRenderer.sprite = part2;
+                rootRenderer.Render(RootRenderer.FRAG_2);
                 break;
         }
     }
